@@ -1,0 +1,20 @@
+import requests
+import json
+lat = 59.9
+lon = 30.6
+appid = "05d670cd9e4e82896b353296950c9a39"
+try:
+    res = requests.get("http://api.openweathermap.org/data/2.5/weather",
+        params={'lat': lat, 'lon': lon, 'units': 'metric', 'lang': 'ru', 'APPID': appid})
+    data = res.json()
+    temp = data['main']['temp']
+    print("температура:", temp)
+    d_min = -100
+    d_max = -10
+    if temp >= d_min and temp <= d_max:
+        print('тест прошел валидацию')
+    else:
+        print('тест не прошел валидацию')
+except Exception as e:
+    print("Exception (weather):", e)
+    pass
